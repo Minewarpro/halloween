@@ -26,13 +26,14 @@ class Tableau1 extends Phaser.Scene{
         }
 
         //filtre film TODO élève : faire une boucle à la place des 3 lignes qui suivent
-        this.load.image('filterFilm1', 'assets/level/filters/film/frame-1.png');
-        this.load.image('filterFilm2', 'assets/level/filters/film/frame-2.png');
-        this.load.image('filterFilm3', 'assets/level/filters/film/frame-3.png');
+        for(let i=1;i<=3;i++){
+            this.load.image('filterFilm'+i, 'assets/level/filters/film/frame-'+i+'.png');
+        }
 
         //texture au fond  TODO élève : faire une boucle pour charger les 3 images et démontrer par la même que vous savez aller au plus simple
-        this.load.image('bg-animation-a', 'assets/level/background-2/bg-animation/bg-animation-a.png');
-
+        for(let i=1;i<=3;i++){
+            this.load.image('bg-animation-'+i, 'assets/level/background-2/bg-animation/bg-animation'+i+'.png');
+        }
     }
 
     /**
@@ -66,9 +67,10 @@ class Tableau1 extends Phaser.Scene{
          * Arbre dans bg2
          * @type {Phaser.GameObjects.Image}
          */
-        let bg2Tree2=this.add.image(400,-50, 'bg2-tree-2').setOrigin(0,0);
+        let bg2Tree2=this.add.image(460,-35, 'bg2-tree-2').setOrigin(0,0);
+        bg2Tree2.setScale(0.5)
         this.bg2Container.add(bg2Tree2);
-        bg2Tree2.angle=-5; //pencher l'arbre de -5 degrès
+        bg2Tree2.angle=0; //pencher l'arbre de -5 degrès
 
         //--------------background 1 (gris) --------------------
 
