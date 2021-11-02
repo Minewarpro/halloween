@@ -16,11 +16,23 @@ class Tableau1 extends Phaser.Scene{
         //bg 1 (gris légèrement flou)
         this.load.image('bg1-terrain-3', 'assets/level/background-1/bg-terrain-3.png');
         this.load.image('bg1-tree-1', 'assets/level/background-1/bg-tree-1.png');
+        this.load.image('bg1-tree-3', 'assets/level/background-1/bg-tree-3.png');
+        this.load.image('bg1-terrain-1', 'assets/level/background-1/bg-terrain-1.png');
 
         //ground (premier plan noir)
         this.load.image('gMid', 'assets/level/ground/g-mid.png');
         this.load.image('gRight', 'assets/level/ground/g-right.png');
         this.load.image('gTree1', 'assets/level/ground/g-tree-1.png');
+        this.load.image('gStone2', 'assets/level/ground/g-stone-2.png');
+        this.load.image('gTree2', 'assets/level/ground/g-tree-2.png');
+        this.load.image('gMushroom1', 'assets/level/ground/g-mushroom1.png');
+        this.load.image('gTree3', 'assets/level/ground/g-tree-3.png');
+        this.load.image('gLeft', 'assets/level/ground/g-left.png');
+        this.load.image('gStone4', 'assets/level/ground/g-stone-4.png');
+        this.load.image('gWB', 'assets/level/ground/g-wooden-bridge.png');
+        this.load.image('gWater', 'assets/level/ground/g-water.png');
+        this.load.image('gBox', 'assets/level/ground/g-box-2.png');
+        this.load.image('gVine', 'assets/level/ground/g-vine-a.png');
 
         //au lieu d'écrire 5 lignes quasi identiques, on charge l'herbe avec une boucle
         // ALGO : ceci est une boucle
@@ -97,8 +109,13 @@ class Tableau1 extends Phaser.Scene{
          * Terrain
          * @type {Phaser.GameObjects.Image}
          */
-        let bg1Terrain3=this.add.image(-450,200, 'bg1-terrain-3').setOrigin(0,0);
+        let bg1Terrain3=this.add.image(-425,200, 'bg1-terrain-3').setOrigin(0,0);
         this.bg1Container.add(bg1Terrain3);
+
+        let bg1Terrain1=this.add.image(700,300, 'bg1-terrain-1').setOrigin(0,0);
+        this.bg1Container.add(bg1Terrain1);
+        bg1Terrain1.setScale(0.5)
+
         /**
          * Arbre
          * @type {Phaser.GameObjects.Image}
@@ -106,6 +123,10 @@ class Tableau1 extends Phaser.Scene{
         let bg1Tree1=this.add.image(-25,-40, 'bg1-tree-1').setOrigin(0,0);
         this.bg1Container.add(bg1Tree1);
         bg1Tree1.setScale(0.7)
+
+        let bg1Tree3=this.add.image(150,-80, 'bg1-tree-3').setOrigin(0,0);
+        this.bg1Container.add(bg1Tree3);
+        bg1Tree3.setScale(0.6)
 
         //-------------ground (premier plan noir)---------------------------
 
@@ -118,9 +139,19 @@ class Tableau1 extends Phaser.Scene{
          * Arbre
          * @type {Phaser.GameObjects.Image}
          */
-        let tree1=this.add.image(300,350, 'gTree1').setOrigin(0,1);
-        tree1.setTintFill(0xFF0000); // pratique pour dbugger
+
+        let tree2=this.add.image(250,375, 'gTree2').setOrigin(0,1);
+        this.groundContainer.add(tree2);
+        tree2.setScale(0.7)
+
+        let tree3=this.add.image(30,375, 'gTree3').setOrigin(0,1);
+        this.groundContainer.add(tree3);
+        tree3.setScale(0.7)
+
+        let tree1=this.add.image(900,375, 'gTree1').setOrigin(0,1);
         this.groundContainer.add(tree1);
+        tree1.setScale(0.7)
+        tree1.angle=-10
         /**
          * Terrain 1
          * @type {Phaser.GameObjects.Image}
@@ -128,6 +159,36 @@ class Tableau1 extends Phaser.Scene{
         //ici on va calculer les positions
         let gMid1=this.add.image(-150,350, 'gMid').setOrigin(0,0);
         this.groundContainer.add(gMid1);
+        /**
+         * Herbe marine
+         * @type {Phaser.GameObjects.TileSprite}
+         */
+        let gGrass7=this.add.image(425,400, 'g-grass-4').setOrigin(0,0);
+        gGrass7.setScale(2.5)
+        this.groundContainer.add(gGrass7);
+
+        let gGrass8=this.add.image(575,400, 'g-grass-4').setOrigin(0,0);
+        gGrass8.setScale(2.5)
+        this.groundContainer.add(gGrass8);
+
+        let gGrass9=this.add.image(685,400, 'g-grass-4').setOrigin(0,0);
+        gGrass9.setScale(2.5)
+        this.groundContainer.add(gGrass9);
+        /**
+         * De l'eau
+         * @type {Phaser.GameObjects.TileSprite}
+         */
+        let gWater=this.add.image(425,385, 'gWater').setOrigin(0,0);
+        this.groundContainer.add(gWater);
+        /**
+         * Stone
+         * @type {Phaser.GameObjects.Image}
+         */
+        let gStone2=this.add.image(350,335, 'gStone2').setOrigin(0,0);
+        this.groundContainer.add(gStone2);
+
+        let gStone4=this.add.image(790,350, 'gStone4').setOrigin(0,0);
+        this.groundContainer.add(gStone4);
         /**
          * Terrain 2
          * @type {Phaser.GameObjects.Image}
@@ -141,17 +202,64 @@ class Tableau1 extends Phaser.Scene{
         let gMid3=this.add.image(gMid2.x+gMid2.width,350, 'gRight').setOrigin(0,0);
         this.groundContainer.add(gMid3);
         /**
-         * De l'herbe en textures qui se répète
-         * @type {Phaser.GameObjects.TileSprite}
+         * Terrain 4
+         * @type {Phaser.GameObjects.Image}
          */
-        let grass=this.add.tileSprite(0,370,gMid3.x+gMid3.width-40,50,'g-grass-1').setOrigin(0,1)
-        this.groundContainer.add(grass);
+        let gMid4=this.add.image(775,365, 'gLeft').setOrigin(0,0);
+        this.groundContainer.add(gMid4);
         /**
-         * encore de l'herbe
+         * De l'herbe
          * @type {Phaser.GameObjects.TileSprite}
          */
-        let grass2=this.add.tileSprite(0,370,gMid3.x+gMid3.width-40,50,'g-grass-3').setOrigin(0,1)
-        this.groundContainer.add(grass2);
+        let gGrass1=this.add.image(390,310, 'g-grass-1').setOrigin(0,0);
+        this.groundContainer.add(gGrass1);
+
+        let gGrass2=this.add.image(340,310, 'g-grass-2').setOrigin(0,0);
+        this.groundContainer.add(gGrass2);
+
+        let gGrass5=this.add.image(175,300, 'g-grass-5').setOrigin(0,0);
+        this.groundContainer.add(gGrass5);
+
+        let gGrass3=this.add.image(105,300, 'g-grass-3').setOrigin(0,0);
+        this.groundContainer.add(gGrass3);
+
+        let gGrass4=this.add.image(5,310, 'g-grass-4').setOrigin(0,0);
+        this.groundContainer.add(gGrass4);
+
+        let gGrass6=this.add.image(875,325, 'g-grass-5').setOrigin(0,0);
+        this.groundContainer.add(gGrass6);
+        /**
+         * Champignon
+         * @type {Phaser.GameObjects.TileSprite}
+         */
+        let gMushroom1=this.add.image(140,268, 'gMushroom1').setOrigin(0,0);
+        gMushroom1.angle=10;
+        this.groundContainer.add(gMushroom1);
+        /**
+         * WB
+         * @type {Phaser.GameObjects.TileSprite}
+         */
+        let gWB=this.add.image(425,300, 'gWB').setOrigin(0,0);
+        gWB.setScale(0.8)
+        this.groundContainer.add(gWB);
+        /**
+         * Caisse
+         * @type {Phaser.GameObjects.TileSprite}
+         */
+        let gBox=this.add.image(525,293, 'gBox').setOrigin(0,0);
+        gBox.setScale(0.6)
+        gBox.angle=5
+        this.groundContainer.add(gBox);
+        /**
+         * Vine
+         * @type {Phaser.GameObjects.TileSprite}
+         */
+        let gVine=this.add.tileSprite(570,-3, 20, 400,'gVine').setOrigin(0,0);
+        gVine.setScale(0.5)
+        this.groundContainer.add(gVine);
+        let gVine2=this.add.tileSprite(600,-3, 20, 250,'gVine').setOrigin(0,0);
+        gVine2.setScale(0.5)
+        this.groundContainer.add(gVin2);
         /**
          * filtre type film au premier plan
          * @type {Phaser.GameObjects.Sprite}
