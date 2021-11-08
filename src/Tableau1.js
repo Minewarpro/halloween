@@ -259,7 +259,7 @@ class Tableau1 extends Phaser.Scene{
         this.groundContainer.add(gVine);
         let gVine2=this.add.tileSprite(600,-3, 20, 250,'gVine').setOrigin(0,0);
         gVine2.setScale(0.5)
-        this.groundContainer.add(gVin2);
+        this.groundContainer.add(gVine);
         /**
          * filtre type film au premier plan
          * @type {Phaser.GameObjects.Sprite}
