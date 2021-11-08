@@ -139,6 +139,11 @@ class Tableau1 extends Phaser.Scene{
          * Terrain
          * @type {Phaser.GameObjects.Image}
          */
+
+        let Z2=this.add.image(1250,285, 'Z2').setOrigin(0,1);
+        this.bg1Container.add(Z2);
+        Z2.setScale(0.7)
+
         let bg1Terrain3=this.add.image(-205,200, 'bg1-terrain-3').setOrigin(0,0);
         this.bg1Container.add(bg1Terrain3);
 
@@ -201,9 +206,6 @@ class Tableau1 extends Phaser.Scene{
          */
         let Z1=this.add.image(1250,375, 'Z1').setOrigin(0,1);
         this.groundContainer.add(Z1);
-
-        let Z2=this.add.image(1550,375, 'Z2').setOrigin(0,1);
-        this.groundContainer.add(Z2);
         /**
          * Arbre
          * @type {Phaser.GameObjects.Image}
