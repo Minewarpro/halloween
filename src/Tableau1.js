@@ -201,6 +201,7 @@ class Tableau1 extends Phaser.Scene{
          */
         let Z1=this.add.image(1250,375, 'Z1').setOrigin(0,1);
         this.groundContainer.add(Z1);
+
         let Z2=this.add.image(1550,375, 'Z2').setOrigin(0,1);
         this.groundContainer.add(Z2);
         /**
