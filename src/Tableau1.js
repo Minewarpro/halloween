@@ -42,6 +42,8 @@ class Tableau1 extends Phaser.Scene{
         this.load.image('gVine', 'assets/level/ground/g-vine-a.png');
         this.load.image('gFTree1', 'assets/level/ground/g-fellen-tree-1.png');
         this.load.image('gSpike1', 'assets/level/ground/g-spike-1.png');
+        this.load.image('Z1', 'assets/level/ground/g-spike-1.png');
+
 
         //au lieu d'écrire 5 lignes quasi identiques, on charge l'herbe avec une boucle
         // ALGO : ceci est une boucle
@@ -412,7 +414,7 @@ class Tableau1 extends Phaser.Scene{
          * filtre type film au premier plan
          * @type {Phaser.GameObjects.Sprite}
          */
-        this.filterBlood = this.add.sprite(1100, 0, 'filterBlood1').setOrigin(0,0);
+        this.filterBlood = this.add.sprite(1190, 0, 'filterBlood1').setOrigin(0,0);
         //animation de 3 images
         this.anims.create({
             key: 'blood',
@@ -459,8 +461,8 @@ class Tableau1 extends Phaser.Scene{
         this.cameras.main.setBounds(0, 0, 2000, 540);
         //définit à quelles vitesse se déplacent nos différents plans
         bgAnimationA.scrollFactorX=0;
-        this.filterFilm.scrollFactorX=10;
-        this.filterBlood.scrollFactorX=9;
+        this.filterFilm.scrollFactorX=0;
+        this.filterBlood.scrollFactorX=10;
         this.bg2Container.scrollFactorX=6;
         this.bg1Container.scrollFactorX=8;
         this.groundContainer.scrollFactorX=10;
