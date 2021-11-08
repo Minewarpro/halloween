@@ -43,7 +43,7 @@ class Tableau1 extends Phaser.Scene{
         this.load.image('gFTree1', 'assets/level/ground/g-fellen-tree-1.png');
         this.load.image('gSpike1', 'assets/level/ground/g-spike-1.png');
         this.load.image('Z1', 'assets/images/z1.png');
-
+        this.load.image('Z2', 'assets/images/z2.png');
 
         //au lieu d'écrire 5 lignes quasi identiques, on charge l'herbe avec une boucle
         // ALGO : ceci est une boucle
@@ -58,6 +58,11 @@ class Tableau1 extends Phaser.Scene{
         for(let i=1;i<=3;i++) {
             this.load.image('filterBlood' + i, 'assets/level/filters/bloody/frame' + i + '.png');
         }
+
+        for(let i=1;i<=3;i++) {
+            this.load.image('filterRain' + i, 'assets/level/weather/rain/frame' + i + '.png');
+        }
+
         //texture au fond  TODO élève : faire une boucle pour charger les 3 images et démontrer par la même que vous savez aller au plus simple
         for(let i=1;i<=3;i++){
             this.load.image('bg-animation-'+i, 'assets/level/background-2/bg-animation/bg-animation-'+i+'.png');
@@ -196,6 +201,8 @@ class Tableau1 extends Phaser.Scene{
          */
         let Z1=this.add.image(1250,375, 'Z1').setOrigin(0,1);
         this.groundContainer.add(Z1);
+        let Z2=this.add.image(1550,375, 'Z2').setOrigin(0,1);
+        this.groundContainer.add(Z2);
         /**
          * Arbre
          * @type {Phaser.GameObjects.Image}
@@ -360,9 +367,9 @@ class Tableau1 extends Phaser.Scene{
          * @type {Phaser.GameObjects.Image}
          */
 
-        let tree4=this.add.image(950,375, 'gTree2').setOrigin(0,1);
+        let tree4=this.add.image(960,375, 'gTree2').setOrigin(0,1);
         this.groundContainer.add(tree4);
-        tree4.setScale(2)
+        tree4.setScale(2.5)
 
         let tree5=this.add.image(1250,375, 'gTree2').setOrigin(0,1);
         this.groundContainer.add(tree5);
@@ -420,6 +427,24 @@ class Tableau1 extends Phaser.Scene{
          * filtre type film au premier plan
          * @type {Phaser.GameObjects.Sprite}
          */
+        this.filterRain = this.add.sprite(1190, 0, 'filterRain1').setOrigin(0,0);
+        //animation de 3 images
+        this.anims.create({
+            key: 'Rain',
+            frames: [
+                {key:'filterRain1'},
+                {key:'filterRain2'},
+                {key:'filterRain3'},
+            ],
+            frameRate: 16,
+            repeat: -1
+        });
+        this.filterRain.play('Rain');
+
+        /**
+         * filtre type film au premier plan
+         * @type {Phaser.GameObjects.Sprite}
+         */
         this.filterBlood = this.add.sprite(1190, 0, 'filterBlood1').setOrigin(0,0);
         //animation de 3 images
         this.anims.create({
@@ -464,11 +489,12 @@ class Tableau1 extends Phaser.Scene{
         //initialise ce qui se passe avec le clavier
         this.initKeyboard();
         // Définit l'espace de déplacement de la caméra
-        this.cameras.main.setBounds(0, 0, 2000, 540);
+        this.cameras.main.setBounds(0, 0, 1080, 540);
         //définit à quelles vitesse se déplacent nos différents plans
         bgAnimationA.scrollFactorX=0;
         this.filterFilm.scrollFactorX=0;
         this.filterBlood.scrollFactorX=10;
+        this.filterRain.scrollFactorX=10;
         this.bg2Container.scrollFactorX=6;
         this.bg1Container.scrollFactorX=8;
         this.groundContainer.scrollFactorX=10;
