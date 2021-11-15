@@ -549,11 +549,11 @@ class Tableau1 extends Phaser.Scene{
                     me.filterRain.visible=false;
                     me.filterSnow.visible=false;
                     break;
-                case Phaser.Input.Keyboard.KeyCodes.R:
+                case Phaser.Input.Keyboard.KeyCodes.P:
                     me.filterRain.visible=true;
                     me.filterSnow.visible=false;
                     break;
-                case Phaser.Input.Keyboard.KeyCodes.P:
+                case Phaser.Input.Keyboard.KeyCodes.N:
                     me.filterSnow.visible=true;
                     me.filterRain.visible=false;
                     break;
