@@ -63,6 +63,9 @@ class Tableau1 extends Phaser.Scene{
             this.load.image('filterRain' + i, 'assets/level/weather/rain/frame' + i + '.png');
         }
 
+        for(let i=1;i<=5;i++) {
+            this.load.image('filterSnow' + i, 'assets/level/weather/snow/frame-' + i + '.png');
+        }
         //texture au fond  TODO élève : faire une boucle pour charger les 3 images et démontrer par la même que vous savez aller au plus simple
         for(let i=1;i<=3;i++){
             this.load.image('bg-animation-'+i, 'assets/level/background-2/bg-animation/bg-animation-'+i+'.png');
@@ -427,7 +430,7 @@ class Tableau1 extends Phaser.Scene{
         gSpike1.setScale(1.3)
 
         /**
-         * filtre type film au premier plan
+         * filtre type Rain au premier plan
          * @type {Phaser.GameObjects.Sprite}
          */
         this.filterRain = this.add.sprite(1190, 0, 'filterRain1').setOrigin(0,0);
@@ -443,6 +446,28 @@ class Tableau1 extends Phaser.Scene{
             repeat: -1
         });
         this.filterRain.play('Rain');
+
+        /**
+         * filtre type Snow au premier plan
+         * @type {Phaser.GameObjects.Sprite}
+         */
+        this.filterSnow = this.add.sprite(1190, 0, 'filterSnow1').setOrigin(0,0);
+        //animation de 3 images
+        this.anims.create({
+            key: 'Snow',
+            frames: [
+                {key:'filterSnow1'},
+                {key:'filterSnow2'},
+                {key:'filterSnow3'},
+                {key:'filterSnow4'},
+                {key:'filterSnow5'},
+            ],
+            frameRate: 16,
+            repeat: -1
+        });
+        this.filterSnow.play('Snow');
+        this.filterSnow.vilible=false;
+        
 
         /**
          * filtre type film au premier plan
@@ -498,6 +523,7 @@ class Tableau1 extends Phaser.Scene{
         this.filterFilm.scrollFactorX=0;
         this.filterBlood.scrollFactorX=10;
         this.filterRain.scrollFactorX=10;
+        this.filterSnow.scrollFactorX=10;
         this.bg2Container.scrollFactorX=6;
         this.bg1Container.scrollFactorX=8;
         this.groundContainer.scrollFactorX=10;
@@ -517,6 +543,16 @@ class Tableau1 extends Phaser.Scene{
                     break;
                 case Phaser.Input.Keyboard.KeyCodes.LEFT:
                     me.speed=-1;
+                    break;
+                case Phaser.Input.Keyboard.KeyCodes.S:
+                    me.filterRain.visible=false;
+                    me.filterSnow.visible=false;
+                    break;
+                case Phaser.Input.Keyboard.KeyCodes.R:
+                    me.filterRain.visible=true;
+                    break;
+                case Phaser.Input.Keyboard.KeyCodes.P:
+                    me.filterSnow.visible=true;
                     break;
             }
         });
