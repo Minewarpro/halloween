@@ -463,11 +463,11 @@ class Tableau1 extends Phaser.Scene{
                 {key:'filterSnow5'},
             ],
             frameRate: 16,
-            repeat: -1
+            repeat: -1,
+
         });
         this.filterSnow.play('Snow');
-        this.filterSnow.vilible=false;
-        
+        this.filterSnow.visible=false;
 
         /**
          * filtre type film au premier plan
@@ -486,6 +486,7 @@ class Tableau1 extends Phaser.Scene{
             repeat: -1
         });
         this.filterBlood.play('blood');
+
 
         /**
          * filtre type film au premier plan
@@ -550,9 +551,11 @@ class Tableau1 extends Phaser.Scene{
                     break;
                 case Phaser.Input.Keyboard.KeyCodes.R:
                     me.filterRain.visible=true;
+                    me.filterSnow.visible=false;
                     break;
                 case Phaser.Input.Keyboard.KeyCodes.P:
                     me.filterSnow.visible=true;
+                    me.filterRain.visible=false;
                     break;
             }
         });
